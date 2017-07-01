@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.quakereport">
+    package="com.example.android.news">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -27,7 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".EarthquakeActivity">
+        <activity android:name="com.example.android.news.NewsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -35,11 +35,11 @@
         </activity>
 
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.example.android.news.SettingsActivity"
             android:label="@string/settings_title">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.android.quakereport.EarthquakeActivity"/>
+                android:value="com.example.android.news.NewsActivity"/>
         </activity>
 
     </application>

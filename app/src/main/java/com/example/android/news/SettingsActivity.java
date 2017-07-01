@@ -1,4 +1,4 @@
-package com.example.android.quakereport;
+package com.example.android.news;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.settings_activity);
     }
 
-    public static class EarthquakePreferenceFragment extends PreferenceFragment
+    public static class NewsPreferenceFragment extends PreferenceFragment
             implements Preference.OnPreferenceChangeListener {
 
         //override the onCreate() method to use the settings_main XML resource
@@ -30,8 +30,8 @@ public class SettingsActivity extends AppCompatActivity {
             // which will set this fragment as the OnPreferenceChangeListener and update the summary so that
             //it displays the current value stored in SharedPreferences.
 
-            Preference minMagnitude = findPreference(getString(R.string.settings_min_magnitude_key));
-            bindPreferenceSummaryToValue(minMagnitude);
+            Preference defaultQuery = findPreference(getString(R.string.settings_default_query));
+            bindPreferenceSummaryToValue(defaultQuery);
 
             Preference orderBy = findPreference(getString(R.string.settings_order_by_key));
             bindPreferenceSummaryToValue(orderBy);
@@ -50,7 +50,7 @@ public class SettingsActivity extends AppCompatActivity {
             onPreferenceChange(preference, preferenceString);
         }
 
-        //EarthquakePreferenceFragment class should implement the OnPreferenceChangeListener interface,
+        //NewsPreferenceFragment class should implement the OnPreferenceChangeListener interface,
         //and override the onPreferenceChange() method.
         // The code in this method takes care of updating the displayed preference summary
         // after it has been changed.
@@ -59,7 +59,7 @@ public class SettingsActivity extends AppCompatActivity {
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
 
-            // update the onPreferenceChange() method in EarthquakePreferenceFragment to properly update
+            // update the onPreferenceChange() method in NewsPreferenceFragment to properly update
             // the summary of a ListPreference (using the label, instead of the key).
 
             if (preference instanceof ListPreference) {

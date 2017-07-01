@@ -8,17 +8,12 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp">
 
-    <TextView
-        android:id="@+id/magnitude"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_gravity="center_vertical"
-        android:background="@drawable/magnitude_circle"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        tools:text="8.9" />
+        android:gravity="center" />
 
 
     <LinearLayout
@@ -31,7 +26,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/location_offset"
+            android:id="@+id/section"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -43,7 +38,7 @@
             tools:text="30km S of" />
 
         <TextView
-            android:id="@+id/primary_location"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -72,7 +67,7 @@
             tools:text="Mar 6, 2010" />
 
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
