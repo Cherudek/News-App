@@ -53,7 +53,7 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
      */
     //private static final String GUARDIAN_API_REQUEST_URL = "http://content.guardianapis.com/search?";
 
-    private static final String GUARDIAN_API_REQUEST_URL = "https://content.guardianapis.com/search?q=12%20years%20a%20slave&format=json&tag=film/film,tone/reviews&from-date=2010-01-01&show-tags=contributor&show-fields=starRating,headline,thumbnail,short-url&order-by=relevance";
+    private static final String GUARDIAN_API_REQUEST_URL = "https://content.guardianapis.com/search?format=json&show-tags=contributor&pageSize=8&show-fields=starRating,headline,thumbnail,short-url&order-by=newest";
 
     /**
      * TextView that is displayed when the list is empty

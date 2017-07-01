@@ -15,7 +15,7 @@
 -->
 <resources>
     <string name="app_name">News App</string>
-    <string name="near_the">Near the</string>
+    <string name="not_available">N.A.</string>
     <string name="site_var">placeSite</string>
     <string name="empty_state">No News Found</string>
     <string name="no_internet">No Internet Connectivity</string>

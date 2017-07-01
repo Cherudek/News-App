@@ -25,11 +25,15 @@ import butterknife.BindView;
 
 public class NewsAdapter extends ArrayAdapter<News> {
 
-    private static final String LOCATION_SEPARATOR = " of ";
+    private static final String DATE_SEPARATOR = "T";
+    private static final String DATE_SEPARATOR2 = "Z";
+
     private static final String LOG_TAG = NewsAdapter.class.getSimpleName();
-    //new variables (primary location and location offset) to store the resulting Strings.
-    String primaryLocation;
-    String locationOffset;
+
+    //new variables (Date and time) to store the resulting Strings.
+    String Date;
+    String timeZ;
+    String time;
 
     @BindView(R.id.title) TextView titleView;
     @BindView(R.id.section) TextView sectionView;
@@ -67,6 +71,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         holder.sectionView = (TextView) listItemView.findViewById(R.id.section);
         holder.dateView = (TextView) listItemView.findViewById(R.id.date);
         holder.imageView = (ImageView) listItemView.findViewById(R.id.image);
+        holder.authorView = (TextView) listItemView.findViewById(R.id.author);
         // associate the holder with the view for later lookup
         listItemView.setTag(holder);
 
@@ -84,8 +89,18 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         //Get the Section String from the News object and store that in a variable.
         String date = currentNews.getmDate();
+
+
+        //check if the original location String contains the LOCATION_SEPARATOR first,
+            String[] parts = date.split(DATE_SEPARATOR);
+            Date = parts[0];
+            timeZ = parts[1];
+            String[] timeMinusZ = timeZ.split(DATE_SEPARATOR2);
+            time = timeMinusZ[0];
+
+
         // Set the date text in the dateView
-        holder.dateView.setText(date);
+        holder.dateView.setText(Date + "   " + time);
 
         //Get the Section String from the News object and store that in a variable.
         String imageUrl = currentNews.getmThumbnail();
@@ -94,7 +109,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         Picasso.with(getContext()).load(imageUrl).into(holder.imageView);
 
         //Get the author String from the News object and store that in a variable.
-        String author = currentNews.getmDate();
+        String author = currentNews.getmAuthor();
         // Set the date text in the dateView
         holder.authorView.setText(author);
 

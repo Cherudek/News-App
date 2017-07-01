@@ -22,6 +22,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 import static com.example.android.news.NewsActivity.LOG_TAG;
 
 /**
@@ -181,51 +183,57 @@ public final class QueryUtils {
                 // for that news.
                 JSONObject fields = currentNews.getJSONObject("fields");
 
+
                 // Extract the value for the key "thumbnail"
                 String thumbnail;
                 if (fields.has("thumbnail")) {
                     thumbnail = fields.getString("thumbnail");
                 } else {
-                    thumbnail = "N.A.";
+                    thumbnail = "N.A";
                 }
 
-                // Extract the value for the key "webTitle" (author)
-                String author;
-                if (fields.has("webTitle")) {
-                    author = fields.getString("webTitle");
-                } else {
-                    author = "N.A.";
+                JSONArray tags = currentNews.getJSONArray("tags");
+
+                for (int t = 0; t < tags.length(); t++) {
+                    JSONObject contributor = tags.getJSONObject(t);
+                    // Extract the value for the key "webTitle" (author)
+                    String author;
+                    if (contributor.has("webTitle")) {
+                        author = contributor.getString("webTitle");
+                    } else {
+                        author = "N.A.";
+                    }
+
+                    // Extract the value for the key "webUrl" (author web link)
+                    String authorLink;
+                    if (contributor.has("webUrl")) {
+                        authorLink = contributor.getString("webUrl");
+                    } else {
+                        authorLink = "N.A.";
+                    }
+
+
+                    // Extract the value for the key called "webTitle"
+                    String title = currentNews.getString("webTitle");
+
+                    // Extract the value for the key called "sectionName"
+                    String section = currentNews.getString("sectionName");
+
+                    // Extract the value for the key called "webPublicationDate"
+                    String date = currentNews.getString("webPublicationDate");
+
+                    // Extract the value for the key called "webUrl"
+                    String webUrl = currentNews.getString("webUrl");
+
+
+                    // Create a new {@link News} object with the title, section, time,
+                    // and url from the JSON response.
+                    News news = new News(title, section, date, webUrl, thumbnail, author, authorLink);
+
+                    // Add the new {@link News} to the list of newses.
+                    newses.add(news);
                 }
 
-                // Extract the value for the key "webUrl" (author web link)
-                String authorLink;
-                if (fields.has("webUrl")) {
-                    authorLink = fields.getString("webUrl");
-                } else {
-                    authorLink = "N.A.";
-                }
-
-                // Extract the value for the key called "webTitle"
-                String title = currentNews.getString("webTitle");
-
-                // Extract the value for the key called "sectionName"
-                String section = currentNews.getString("sectionName");
-
-                // Extract the value for the key called "webPublicationDate"
-                String date = currentNews.getString("webPublicationDate");
-
-                // Extract the value for the key called "webUrl"
-                String webUrl = currentNews.getString("webUrl");
-
-
-
-
-                // Create a new {@link News} object with the title, section, time,
-                // and url from the JSON response.
-                News news = new News(title, section, date, webUrl, thumbnail, author, authorLink);
-
-                // Add the new {@link News} to the list of newses.
-                newses.add(news);
             }
 
         } catch (JSONException e) {
