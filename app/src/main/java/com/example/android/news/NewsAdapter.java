@@ -50,14 +50,14 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Check if there is an existing list item view (called convertView) that we can reuse,
-        // otherwise, if convertView is null, then inflate a new list item layout.
-        View listItemView = convertView;
 
         //to reference the child views for later actions
         ViewHolder holder;
-        if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
+
+        // Check if there is an existing list item view (called convertView) that we can reuse,
+        // otherwise, if convertView is null, then inflate a new list item layout.
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
 
@@ -67,13 +67,13 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         // cache view fields into the holder
         holder = new ViewHolder();
-        holder.titleView = (TextView) listItemView.findViewById(R.id.title);
-        holder.sectionView = (TextView) listItemView.findViewById(R.id.section);
-        holder.dateView = (TextView) listItemView.findViewById(R.id.date);
-        holder.imageView = (ImageView) listItemView.findViewById(R.id.image);
-        holder.authorView = (TextView) listItemView.findViewById(R.id.author);
+        holder.titleView = (TextView) convertView.findViewById(R.id.title);
+        holder.sectionView = (TextView) convertView.findViewById(R.id.section);
+        holder.dateView = (TextView) convertView.findViewById(R.id.date);
+        holder.imageView = (ImageView) convertView.findViewById(R.id.image);
+        holder.authorView = (TextView) convertView.findViewById(R.id.author);
         // associate the holder with the view for later lookup
-        listItemView.setTag(holder);
+        convertView.setTag(holder);
 
         //Get the Title String from the News object and store that in a variable.
         String title = currentNews.getmTitle();
@@ -122,7 +122,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
 
         // Return the list item view that is now showing the appropriate data
-        return listItemView;
+        return convertView;
     }
 
     // somewhere else in your class definition
